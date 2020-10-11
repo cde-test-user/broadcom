@@ -15,7 +15,7 @@ pipeline {
         }
          stage('Bulid') {
             steps {
-                sh './mvnw clean install'
+                sh './mvnw clean install test'
                 sh 'docker build . -t broadcom:latest'
             }
         }
