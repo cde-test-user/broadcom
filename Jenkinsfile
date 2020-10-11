@@ -22,13 +22,13 @@ pipeline {
          stage('Deploy') {
             steps {
                 sh """
-                   if [ \$(docker ps -q -f name=broadcom 2&> /dev/null ) ]; then
+                   if [ \$(docker ps -q -f name=broadcom) ]; then
                         # cleanup
                         echo 'Stoping container'
                         docker rm -f broadcom
                     fi
                     # running container
-                    docker run -d -p 8080:8080 --name broadcom broadcom:lates
+                    docker run -d -p 8080:8080 --name broadcom broadcom:latest
                 """
                sleep 10
             }
@@ -52,6 +52,7 @@ pipeline {
        always {
            archiveArtifacts artifacts: 'target/surefire-reports/*.xml', followSymlinks: false, onlyIfSuccessful: true
            junit 'target/surefire-reports/*.xml'
+           sh 'docker image prune -f'
        }
    }
 }
