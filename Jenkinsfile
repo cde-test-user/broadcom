@@ -21,7 +21,7 @@ pipeline {
         }
          stage('Deploy') {
             steps {
-                sh """
+                sh '''
                 if [ ! "\$(docker ps -q -f name=broadcom)" ]; then
                     if [ "\$(docker ps -aq -f status=exited -f name=broadcom" ]; then
                         # cleanup
@@ -30,12 +30,12 @@ pipeline {
                     # running container
                     docker run -d -p 8080:8080 --name broadcom broadcom:latest
                 fi
-                """
+                '''
             }
         }
         stage('Test URL') {
             steps {
-                sh """
+                sh '''
                response_code=\$(curl -s -o /dev/null -w '%{http_code}' http://34.107.84.207:8080/)
                if [ \${response_code} -eq 200 ]; then
                 echo "URL returns status code 200"
@@ -44,7 +44,7 @@ pipeline {
                 exit 1
                fi
                
-                """
+                '''
             }
         }
     }
