@@ -10,7 +10,7 @@ pipeline {
         /* checkout repo */
         stage('Checkout SCM') {
             steps {
-                git credentialsId: 'githubuser', url: "https://github.com/evyacik/broadcom.git"
+             git branch: "${BRANCH_NAME}", credentialsId: 'githubuser', url: 'https://github.com/evyacik/broadcom.git'
             }
         }
          stage('Do the deployment') {
