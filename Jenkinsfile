@@ -10,14 +10,7 @@ pipeline {
         /* checkout repo */
         stage('Checkout SCM') {
             steps {
-                checkout([
-                 $class: 'GitSCM',
-                 branches: [[name: 'main']],
-                 userRemoteConfigs: [[
-                    url: 'https://github.com/evyacik/broadcom.git',
-                    credentialsId: githubuser,
-                 ]]
-                ])
+                git credentialsId: 'githubuser', url: "https://github.com/evyacik/broadcom.git"
             }
         }
          stage('Do the deployment') {
