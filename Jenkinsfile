@@ -22,8 +22,8 @@ pipeline {
          stage('Deploy') {
             steps {
                 sh """
-                if [ ! "$(docker ps -q -f name=broadcom)" ]; then
-                    if [ "$(docker ps -aq -f status=exited -f name=broadcom" ]; then
+                if [ ! "\$(docker ps -q -f name=broadcom)" ]; then
+                    if [ "\$(docker ps -aq -f status=exited -f name=broadcom" ]; then
                         # cleanup
                         docker rm -f broadcom
                     fi
@@ -40,7 +40,7 @@ pipeline {
                if [ \${response_code} -eq 200 ]; then
                 echo "URL returns status code 200"
                else
-                echo "Error, URL returns status code \${response_code}"
+                echo "Error, URL returns status code: \${response_code}"
                 exit 1
                fi
                
