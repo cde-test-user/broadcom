@@ -3,7 +3,7 @@ properties([pipelineTriggers([githubPush()])])
 pipeline {
     /* specify nodes for executing */
     agent {
-        label 'github-ci'
+        label 'any'
     }
  
     stages {
@@ -12,10 +12,10 @@ pipeline {
             steps {
                 checkout([
                  $class: 'GitSCM',
-                 branches: [[name: 'master']],
+                 branches: [[name: 'main']],
                  userRemoteConfigs: [[
-                    url: 'git@github.com:wshihadeh/rabbitmq_client.git',
-                    credentialsId: '',
+                    url: 'https://github.com/evyacik/broadcom.git',
+                    credentialsId: 'githubtoken',
                  ]]
                 ])
             }
