@@ -3,7 +3,7 @@ properties([pipelineTriggers([githubPush()])])
 pipeline {
     /* specify nodes for executing */
     agent {
-        label 'any'
+        label 'master'
     }
  
     stages {
