@@ -23,8 +23,8 @@ pipeline {
     /* Cleanup workspace */
     post {
        always {
-           archiveArtifacts artifacts: './target/surefire-reports/*.xml', followSymlinks: false, onlyIfSuccessful: true
-           junit './target/surefire-reports/*.xml'
+           archiveArtifacts artifacts: 'target/surefire-reports/*.xml', followSymlinks: false, onlyIfSuccessful: true
+           junit 'target/surefire-reports/*.xml'
        }
    }
 }
