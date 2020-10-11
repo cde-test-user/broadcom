@@ -22,16 +22,15 @@ pipeline {
          stage('Deploy') {
             steps {
                 sh """
-                if [ ! \$(docker ps -q -f name=broadcom) ];then
-                    if [ \$(docker ps -aq -f status=exited -f name=broadcom) ];then
+                   if [ \$(docker ps -q -f name=broadcom 2&> /dev/null ) ]; then
                         # cleanup
+                        echo 'Stoping container'
                         docker rm -f broadcom
                     fi
                     # running container
-                    docker run -d -p 8080:8080 --name broadcom broadcom:latest
-                    sleep 10
-                fi
+                    docker run -d -p 8080:8080 --name broadcom broadcom:lates
                 """
+               sleep 10
             }
         }
         stage('Test URL') {
