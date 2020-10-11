@@ -13,9 +13,9 @@ pipeline {
              git branch: "${BRANCH_NAME}", credentialsId: 'githubuser', url: 'https://github.com/evyacik/broadcom.git'
             }
         }
-         stage('Do the deployment') {
+         stage('Bulid') {
             steps {
-                echo ">> Run deploy applications "
+                sh './mvnw clean install'
             }
         }
     }
