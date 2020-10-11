@@ -15,7 +15,7 @@ pipeline {
                  branches: [[name: 'main']],
                  userRemoteConfigs: [[
                     url: 'https://github.com/evyacik/broadcom.git',
-                    credentialsId: 'githubtoken',
+                    credentialsId: githubuser,
                  ]]
                 ])
             }
