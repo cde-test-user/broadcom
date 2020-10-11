@@ -29,6 +29,7 @@ pipeline {
                     fi
                     # running container
                     docker run -d -p 8080:8080 --name broadcom broadcom:latest
+                    sleep 10
                 fi
                 """
             }
